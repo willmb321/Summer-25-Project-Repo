@@ -31,22 +31,33 @@ void servoTimerConfig(){
 
 /**
  * Input: char direction
- * Turns servo left, right, or center
+ * Turns servo left(-1), right(1), or center(0)
  * Waits 500ms time for servo to turn
 **/
-void turnServo(char* direction){
+void turnSetServo(int direction){
     servoTimerConfig();           //Set Timer
   
-    if (direction == "L"){        //Turn left
+    if (direction == -1){        //Turn left
       OCR1B = 8;
       delay(500);
     }
-    else if(direction == "R"){    //Turn right
+    else if(direction == 1){    //Turn right
       OCR1B = 38;
       delay(500);
     }
-    else if(direction == "C"){    //Turn center
+    else if(direction == 0){    //Turn center
       OCR1B = 23;
       delay(500);
     }
+}
+
+void turnServo(int direction, int mag){
+  servoTimerConfig();
+
+  if ((direction == -1) && (OCR1B > 8)){
+    OCR1B--;
+  }
+  else if ((direction == 1)  && (OCR1B < 38)){
+    OCR1B++;
+  }
 }

@@ -1,18 +1,36 @@
 #include <Arduino.h>
+#include "servoLib.h"
+#include "sensorLib.h"
 
-// put function declarations here:
-int myFunction(int, int);
+
+int range = 18;
+volatile int servo_position = 0;
+volatile int servo_direction = -1; // starts going left
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  Serial.begin(9600);
+  Serial.print("Starting up...");
+  sei();
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  //Servo needs to conituously turn back and forth
+  //Sensor scans and checks for object
+    //Performs something if there is an object in range
+
+  //sonarSweep();
 }
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+void sonarSweep(){
+  //Servo sweep logic
+  if ((servo_position == 8) || (servo_position == 38)){
+    servo_direction*= -1;
+  }
+  turnServo(servo_direction, 1);
+
+  //Sensor logic
+  if(checkObject(range)){
+    Serial.print("Object detected at "); Serial.print(sensorMeasure()); Serial.print(" in!");
+    //Add display logic
+  }
 }

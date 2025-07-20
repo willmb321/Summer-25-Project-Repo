@@ -10,6 +10,8 @@ Doc:  Prof. Falkinburg - UNL
 
 #include <Arduino.h>
 
+volatile int OCR1B_var = 23; // Used to keep track of previous position
+
 /**
  * Configures Timer1 for servo use
 **/
@@ -53,11 +55,20 @@ void turnSetServo(int direction){
 
 void turnServo(int direction, int mag){
   servoTimerConfig();
-
+  OCR1B = OCR1B_var;
+  
   if ((direction == -1) && (OCR1B > 8)){
     OCR1B--;
+    OCR1B_var = OCR1B;
+    delay(100);
   }
   else if ((direction == 1)  && (OCR1B < 38)){
     OCR1B++;
+    OCR1B_var = OCR1B;
+    delay(100);
   }
+}
+
+int getOCR1B(){
+  return OCR1B;
 }

@@ -27,9 +27,14 @@ void servoTimerConfig();
  * Turns servo left, right, or center
  * Waits 500ms time for servo to turn
 **/
-void turnSetServo(char* direction);
+void turnSetServo(int direction);
 
+/**
+ * 
+**/
 void turnServo(int direction, int mag);
+
+int getOCR1B();
 
 
 #ifdef __cplusplus

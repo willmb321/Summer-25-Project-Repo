@@ -40,7 +40,7 @@ void turnSetServo(int direction){
     servoTimerConfig();           //Set Timer
   
     if (direction == -1){        //Turn left
-      OCR1B = 8;
+      OCR1B = 9;
       delay(500);
     }
     else if(direction == 1){    //Turn right
@@ -57,15 +57,15 @@ void turnServo(int direction, int mag){
   servoTimerConfig();
   OCR1B = OCR1B_var;
   
-  if ((direction == -1) && (OCR1B > 8)){
+  if ((direction == -1) && (OCR1B > 9)){
     OCR1B--;
     OCR1B_var = OCR1B;
-    delay(100);
+    delay(25);
   }
   else if ((direction == 1)  && (OCR1B < 38)){
     OCR1B++;
     OCR1B_var = OCR1B;
-    delay(100);
+    delay(25);
   }
 }
 

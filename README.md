@@ -5,6 +5,13 @@ The goal of this project is to use a servo and ultrasonic sensor to scan for obj
 create a sonar visual of the objects
 
 
+### Functionality to Add
+- Basic sonar functionality
+    - Need to find degree conversion of OCR1B
+- Display of what sonar sees
+- Start menu to set range of sonar
+- On/off "switch"
+
 #### Display Notes:
 Need to decided on a physical display to use and a library to create graphics. Possible options are below.
 - [ ] adafruit 1.8" TFT Display (adafruit library?)

@@ -11,6 +11,7 @@ Doc:
 #include <Arduino.h>
 #include "servoLib.h"
 #include "sensorLib.h"
+#include "LiquidCrystal.h"
 
 
 int range = 18;
@@ -19,6 +20,8 @@ volatile int first_sight = -1;
 volatile int end_sight = -1;
 volatile double distance = 0;
 volatile int servo_direction = -1; // starts going left
+
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 
 /**
  * Sends notification to terminal and screen in case of object
@@ -69,16 +72,26 @@ void servoTest(){
   turnServo(-1,1);
 }
 
+void lcdTest(){
+  lcd.print("Hello World!");
+}
+
 void setup() {
   Serial.begin(9600);
-  Serial.print("Starting up...");
+  Serial.println("Starting up...");
+
   turnSetServo(-1);
   turnSetServo(0);
   turnSetServo(1);
-  Serial.println();
+
+  lcd.begin(16,2);
+  lcd.clear();
+
   sei();
 }
 
 void loop() {
-  sonarSweep();
+  //sonarSweep();
+  //lcdTest();
+  lcd.print("Hello World!");
 }
